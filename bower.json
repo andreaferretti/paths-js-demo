@@ -1,0 +1,13 @@
+{
+  "name": "Paths.js-demo",
+  "version": "0.0.1",
+  "dependencies": {
+    "requirejs": "*",
+    "requirejs-text": "~2.0.5",
+    "requirejs-domready": "~2.0.1",
+    "ractive": "*",
+    "paths-js": "*"
+  },
+  "devDependencies": {
+  }
+}
