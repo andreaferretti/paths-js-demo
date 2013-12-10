@@ -12,12 +12,22 @@
 		<script src="components/requirejs/require.js"></script>
 		<script src="js/main.js"></script>
 		<!-- endbuild -->
-		
-		<link rel="stylesheet" type="text/css" href="css/main.css">
 
+		<!-- build:css css/all.css -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<!-- endbuild -->
+		
 	</head>
-	<body>
-	  <div id="pie">
-	  <div id="stock">
+	<body class="container">
+	  <div class="row">
+	    <div class="col-md-12">
+  	    <h1>Examples of charts made with Paths.js</h1>
+  	  </div>
+	  </div>
+	  <div class="row">
+	    <div id="pie" class="col-md-6"></div>
+	    <div id="stock" class="col-md-6"></div>
+	  </div>
 	</body>
 </html>
