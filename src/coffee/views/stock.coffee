@@ -1,19 +1,10 @@
 define [
   'ractive'
   'paths/stock'
+  'palette/util'
+  'json!data/stock.json'
   'text!templates/stock.html'
-], (Ractive, Stock, template)->
-  stock_data = [
-    ["Jan 2000", 39.81]
-    ["Feb 2000", 36.35]
-    ["Mar 2000", 43.22]
-    ["Apr 2000", 28.37]
-    ["May 2000", 25.45]
-    ["Jun 2000", 32.54]
-    ["Jul 2000", 28.4]
-    ["Aug 2000", 28.3]
-  ]
-
+], (Ractive, Stock, util, stock_data, template)->
   parse_date = (str) ->
     [month, year] = str.split ' '
     months =
@@ -36,13 +27,17 @@ define [
     d.setYear(parseInt(year, 10) - 1900)
     d.getTime()
 
+  palette = ["#707B82", "#3E90F0", "#7881C2"]
+
   stock = new Ractive
     el: '#stock'
     template: template
     data:
       Stock: Stock
-      data: stock_data
-      xaccessor: ([x, y]) -> parse_date(x)
-      width: 350
-      height: 250
+      data: [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
+      xaccessor: ({ date }) -> parse_date(date)
+      yaccessor: ({ value }) -> value
+      width: 500
+      height: 350
+      colors: util.palette_to_function(palette)
       closed: false

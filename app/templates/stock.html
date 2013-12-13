@@ -6,10 +6,11 @@
   <div class="panel-body">
     <p class="alert alert-info">Here is a line chart example. Try switching data.</p>
 
-	<svg width=400 height=400>
+	<svg width=500 height=380>
 	  <g>
-	    {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, closed: false }) }}
-	      <path d="{{ path.print() }}" stroke="blue" fill="none" />
+	    {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, colors: colors, closed: false }).polygons }}
+	      <path d="{{ line.path.print() }}" stroke="{{ color }}" fill="none" />
+	      <path d="{{ area.path.print() }}" stroke="none" fill="{{ color }}" />
 	    {{/ end of stock }}
 	  </g>
 	</svg>

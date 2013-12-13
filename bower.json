@@ -2,10 +2,10 @@
   "name": "Paths.js-demo",
   "version": "0.0.1",
   "dependencies": {
-    "requirejs": "*",
-    "requirejs-text": "~2.0.5",
-    "requirejs-domready": "~2.0.1",
-    "ractive": "*",
+    "requirejs": "2.1.9",
+    "requirejs-text": "2.0.10",
+    "requirejs-plugins": "1.0.2",
+    "ractive": "0.3.7",
     "paths-js": "*"
   },
   "devDependencies": {
