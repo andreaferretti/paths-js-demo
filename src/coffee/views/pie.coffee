@@ -12,9 +12,9 @@ define [
     { name: 'Argentina', population: 40117096 }
     { name: 'Japan', population: 127290000 }
   ]
-  
+
   palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
-  
+
   pie = new Ractive
     el: '#pie'
     template: template
@@ -40,4 +40,4 @@ define [
     if value == undefined
       value = 0
       @set key, value
-    @animate key, 1 - value
+    @animate key, 1 - value, easing: "easeOut"
