@@ -31,12 +31,11 @@ define [
         factor = expanded or 0
         "#{ factor * x / 3 }, #{ factor * y / 3 }"
       point: ([x, y]) -> "#{ x }, #{ y }"
-      color_string: (r, g, b) ->
-        "rgb(#{ Math.floor(r) },#{ Math.floor(g) },#{ Math.floor(b) })"
+      lighten: (color) ->
+        Colors.string(Colors.lighten color)
+      color_string: Colors.string
 
   pie.on 'expand', (event) ->
-    console.log event
-    console.log @get 'expanded'
     index = event.index.num
     target = [0, 0, 0, 0, 0]
     target[index] = 1
