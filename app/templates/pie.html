@@ -6,15 +6,24 @@
   <div class="panel-body">
     <p class="alert alert-info">Here is a pie chart example. Sectors are clickable.</p>
 
-    <svg width=400 height=400>
+    <svg width=375 height=400>
       <g transform="translate(200, 200)">
         {{# Pie({center: center, r: r, R: R, data: data, accessor: accessor, colors: colors}): num }}
-          <g transform="translate({{ move(sector.centroid, item.expanded) }})">
+          <g transform="translate({{ move(sector.centroid, expanded[num]) }})">
             <path on-click="expand" d="{{ sector.path.print() }}" fill="{{ color_string(color.r, color.g, color.b) }}" />
             <text text-anchor="middle" transform="translate({{ point(sector.centroid) }})">{{ item.name }}</text>
           </g>
         {{/ end of pie}}
       </g>
     </svg>
+
+    {{# data: num }}
+      {{# expanded[num] == 1}}
+        <div class="country-info">
+          <h4>{{ name }}</h4>
+          <p>Population: <span class="label label-info">{{ population }}</span></p>
+        </div>
+      {{/ end if }}
+    {{/ data }}
   </div>
 </div>

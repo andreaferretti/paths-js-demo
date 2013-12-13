@@ -25,6 +25,7 @@ define [
       data: countries
       accessor: (x) -> x.population
       colors: util.palette_to_function(palette)
+      expanded: [0, 0, 0, 0, 0]
       Pie: Pie
       move: ([x, y], expanded) ->
         factor = expanded or 0
@@ -34,10 +35,9 @@ define [
         "rgb(#{ Math.floor(r) },#{ Math.floor(g) },#{ Math.floor(b) })"
 
   pie.on 'expand', (event) ->
+    console.log event
+    console.log @get 'expanded'
     index = event.index.num
-    key = "data.#{ index }.expanded"
-    value = @get(key)
-    if value == undefined
-      value = 0
-      @set key, value
-    @animate key, 1 - value, easing: "easeOut"
+    target = [0, 0, 0, 0, 0]
+    target[index] = 1
+    @animate 'expanded', target, easing: 'easeOut'
