@@ -6,14 +6,11 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-copy')
-  grunt.loadNpmTasks('grunt-contrib-cssmin')
   grunt.loadNpmTasks('grunt-contrib-htmlmin')
-  grunt.loadNpmTasks('grunt-contrib-imagemin')
   grunt.loadNpmTasks('grunt-contrib-requirejs')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-open')
   grunt.loadNpmTasks('grunt-usemin')
-  grunt.loadNpmTasks('grunt-mocha')
 
   mountFolder = (connect, dir)->
     return connect.static(require('path').resolve(dir))
@@ -22,7 +19,6 @@ module.exports = (grunt)->
     app: 'app'
     src: 'src'
     dist: 'dist'
-    test: 'test'
 
     tmp: '.tmp'
     tmp_dist: '.tmp-dist'
@@ -40,11 +36,11 @@ module.exports = (grunt)->
       coffee:
         files: ['<%= config.src %>/coffee/{,**/}*.coffee']
         tasks: ['coffee:dist']
-      
+
       compass:
         files: ['<%= config.src %>/sass/{,**/}*.{scss,sass}']
         tasks: ['compass:server']
-      
+
       files:
         files: [
           '<%= config.tmp %>/{,**/}*.{css,js}'
@@ -75,8 +71,6 @@ module.exports = (grunt)->
         path: 'http://localhost:<%= connect.server.options.port %>'
       dist:
         path: 'http://localhost:<%= connect.dist.options.port %>'
-      test:
-        path: 'http://localhost:<%= connect.test.options.port %>'
 
     clean:
       dist: ['<%= config.dist %>']
@@ -103,7 +97,7 @@ module.exports = (grunt)->
         importPath: ['<%= config.app %>/components']
         relativeAssets: true
 
-      dist: 
+      dist:
         options:
           force: true
           outputStyle: 'compressed'
@@ -130,15 +124,6 @@ module.exports = (grunt)->
       options:
         dirs: ['<%= config.dist %>']
 
-    imagemin:
-      dist:
-        files: [{
-          expand: true,
-          cwd: '<%= config.app %>/images'
-          src: '{,*/}*.{png,jpg,jpeg}'
-          dest: '<%= config.dist %>/images'
-        }]
-
     htmlmin:
       dist:
         files: [{
@@ -151,35 +136,23 @@ module.exports = (grunt)->
     requirejs:
       compile:
         options:
-          # no minification, is done by the min task
           baseUrl: 'js/'
           appDir: './<%= config.tmp_dist %>/'
           dir: './<%= config.dist %>/'
-          
           skipDirOptimize: true
           wrap: true
-
           removeCombined: true
           keepBuildDir: true
-
           inlineText: true
           mainConfigFile: '<%= config.tmp_dist %>/js/main.js'
+          modules: [{ name: 'main', exclude: ['app'] }, { name: 'app' }]
 
-          optimize: "uglify"
-
-  
   grunt.registerTask('server', [
     'coffee:dist'
     'compass:server'
     'connect:server'
     'open:server'
     'watch'
-  ])
-
-
-  grunt.registerTask('compile', [
-    'coffee:dist'
-    'compass:server'
   ])
 
   grunt.registerTask('build', [
@@ -191,7 +164,6 @@ module.exports = (grunt)->
     'copy:dist'
     'requirejs:compile'
     'useminPrepare'
-    'imagemin'
     'htmlmin'
     'concat'
     'usemin'
