@@ -8,5 +8,5 @@ requirejs.config
 		'paths':        '../components/paths-js/dist/paths'
 		'templates': 	  '../templates'
 
-require ['views/pie'], () ->
+require ['views/pie', 'views/stock'], () ->
   console.log 'started'

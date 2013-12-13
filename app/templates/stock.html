@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Line Chart</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is a line chart example. Try switching data.</p>
+
+	<svg width=400 height=400>
+	  <g>
+	    {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, closed: false }) }}
+	      <path d="{{ path.print() }}" stroke="blue" fill="none" />
+	    {{/ end of stock }}
+	  </g>
+	</svg>
+  </div>
+</div>
