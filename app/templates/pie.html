@@ -11,7 +11,7 @@
         {{# Pie({center: center, r: r, R: R, data: data, accessor: accessor, colors: colors}): num }}
           <g transform="translate({{ move(sector.centroid, expanded[num]) }})">
             <linearGradient id = "grad-{{ num }}">
-              <stop stop-color = "{{  color_string(color) }}" offset = "0%"/>
+              <stop stop-color = "{{ color_string(color) }}" offset = "0%"/>
               <stop stop-color = "{{ lighten(color) }}" offset = "100%"/>
             </linearGradient>
             <path on-click="expand" d="{{ sector.path.print() }}" fill="url(#grad-{{ num }})" />
