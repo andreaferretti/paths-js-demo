@@ -23,6 +23,7 @@ define [
   ]
 
   palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
+  colors = util.palette_to_function(palette)
   
   radar = new Ractive
     el: '#radar'
@@ -35,10 +36,13 @@ define [
       accessor: key_accessor(['hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed'])
       data: [pokemon[0]]
       names: pokemon.map (p) -> p.name
-      colors: util.palette_to_function(palette)
+      colors: colors
+      col: colors(0)
       color_string: Colors.string
       lighten: (color) ->
         Colors.string(Colors.lighten color)
       
   radar.observe 'name', (i) ->
-    @animate 'data', [pokemon[i]]
+    @animate
+      data: [pokemon[i]]
+      col: colors(parseInt(i))
