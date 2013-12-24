@@ -37,6 +37,8 @@ define [
       names: pokemon.map (p) -> p.name
       colors: util.palette_to_function(palette)
       color_string: Colors.string
+      lighten: (color) ->
+        Colors.string(Colors.lighten color)
       
-  radar.observe 'pokemon', (i) ->
+  radar.observe 'name', (i) ->
     @animate 'data', [pokemon[i]]

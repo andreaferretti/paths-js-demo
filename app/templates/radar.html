@@ -4,18 +4,30 @@
   </div>
 
   <div class="panel-body">
-    <p class="alert alert-info">Here is a radar chart example.</p>
+    <p class="alert alert-info">Here is a radar chart showing Pokémon stats. Try changing Pokémon.</p>
 
-    <select value='{{ pokemon }}'>
+    <select value='{{ name }}'>
       {{# names:num }}
         <option value='{{ num }}'>{{ . }}</option>
       {{/ names }}
     </select>
 
+    {{# data }}
+      <div class="pokemon-info">
+        <h4>{{ name }}</h4>
+        <p>HP: <span class="label label-info">{{ Math.floor(hp) }}</span></p>
+        <p>Attack: <span class="label label-info">{{ Math.floor(attack) }}</span></p>
+        <p>Defense: <span class="label label-info">{{ Math.floor(defense) }}</span></p>
+        <p>Sp. Attack: <span class="label label-info">{{ Math.floor(sp_attack) }}</span></p>
+        <p>Sp. Defense: <span class="label label-info">{{ Math.floor(sp_defense) }}</span></p>
+        <p>Speed: <span class="label label-info">{{ Math.floor(speed) }}</span></p>
+      </div>
+    {{/ data }}
+
     <svg width=375 height=400>
       <g transform="translate(200,200)">
         {{# Radar({center: center, r: r, data: data, accessor: accessor, max: max, colors: colors}).polygons }}
-          <path d="{{ polygon.path.print() }}" fill="{{ color_string(color) }}" stroke="{{ color_string(color) }}" />
+          <path d="{{ polygon.path.print() }}" fill="{{ lighten(color) }}" stroke="{{ color_string(color) }}" />
         {{/ end of radar}}
       </g>
     </svg>

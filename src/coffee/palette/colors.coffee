@@ -12,8 +12,8 @@ define [], ()->
     g: cut((c1.g + c2.g) / 2)
     b: cut((c1.b + c2.b) / 2)
 
-  lighten = multiply(0.8)
-  darken = multiply(1.2)
+  lighten = multiply(1.2)
+  darken = multiply(0.8)
 
   mix = (c1, c2) ->
     c3 = average c1, c2
