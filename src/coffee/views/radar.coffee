@@ -13,8 +13,8 @@ define [
 
   pokemon = [
     { name: "Bulbasaur", hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 }
-#    { name: "Ivysaur", hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 }
-#    { name: "Venusaur", hp: 80, attack: 82, defense: 83, sp_attack: 100, sp_defense: 100, speed: 80 }
+    { name: "Ivysaur", hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 }
+    { name: "Venusaur", hp: 80, attack: 82, defense: 83, sp_attack: 100, sp_defense: 100, speed: 80 }
     { name: "Weedle", hp: 80, attack: 82, defense: 83, sp_attack: 100, sp_defense: 100, speed: 80 }
     { name: "Kakuna", hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 }
   ]
@@ -30,5 +30,6 @@ define [
       r: 130
       accessor: key_accessor(['hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed'])
       data: pokemon
+      names: pokemon.map (p) -> p.name
       colors: util.palette_to_function(palette)
       color_string: Colors.string
