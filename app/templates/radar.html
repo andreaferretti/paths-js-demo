@@ -26,8 +26,13 @@
 
     <svg width=375 height=400>
       <g transform="translate(200,200)">
-        {{# Radar({center: center, r: r, data: data, accessor: accessor, max: max, colors: colors}).polygons }}
-          <path d="{{ polygon.path.print() }}" fill="{{ lighten(col) }}" stroke="{{ color_string(col) }}" />
+        {{# Radar({center: center, r: r, data: data, accessor: accessor, max: max, colors: colors}) }}
+          {{# rings }}
+            <path d="{{ path.print() }}" fill="none" stroke="gray" />
+          {{/ rings }}
+          {{# polygons }}
+            <path d="{{ polygon.path.print() }}" fill="{{ lighten(col) }}" stroke="{{ color_string(col) }}" />
+          {{/ polygons }}
         {{/ end of radar}}
       </g>
     </svg>
