@@ -7,17 +7,15 @@
     <p class="alert alert-info">Here is a radar chart example.</p>
 
     <select value='{{ pokemon }}'>
-      {{# names }}
-        <option value='{{ . }}'>{{ . }}</option>
+      {{# names:num }}
+        <option value='{{ num }}'>{{ . }}</option>
       {{/ names }}
     </select>
 
     <svg width=375 height=400>
       <g transform="translate(200,200)">
         {{# Radar({center: center, r: r, data: data, accessor: accessor, max: max, colors: colors}).polygons }}
-          {{# item.name == pokemon }}
-            <path d="{{ polygon.path.print() }}" fill="{{ color_string(color) }}" stroke="{{ color_string(color) }}" />
-          {{/ end if }}
+          <path d="{{ polygon.path.print() }}" fill="{{ color_string(color) }}" stroke="{{ color_string(color) }}" />
         {{/ end of radar}}
       </g>
     </svg>
