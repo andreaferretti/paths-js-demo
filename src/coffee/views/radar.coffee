@@ -24,6 +24,7 @@ define [
 
   palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
   colors = util.palette_to_function(palette)
+  labels = ['hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed']
   
   radar = new Ractive
     el: '#radar'
@@ -33,12 +34,16 @@ define [
       center: [0, 0]
       r: 130
       max: 100
-      accessor: key_accessor(['hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed'])
+      accessor: key_accessor(labels)
       data: [pokemon[0]]
       names: pokemon.map (p) -> p.name
       colors: colors
+      labels: labels
       col: colors(0)
       color_string: Colors.string
+      translate: ([x, y]) -> "translate(#{ Math.floor(1.2 * x) }, #{ Math.floor(1.2 * y) })"
+      x: ([x, y]) -> x
+      y: ([x, y]) -> y
       lighten: (color) ->
         Colors.string(Colors.lighten color)
       

@@ -27,8 +27,16 @@
     <svg width=375 height=400>
       <g transform="translate(200,200)">
         {{# Radar({center: center, r: r, data: data, accessor: accessor, max: max, colors: colors}) }}
-          {{# rings }}
-            <path d="{{ path.print() }}" fill="none" stroke="gray" />
+          {{# rings:num }}
+            {{# num == 2 }}
+              {{# path.points():num }}
+                <text text-anchor="middle" transform="{{ translate(.) }}">{{ labels[num] }}</text>
+                <line x1="{{ x(.) }}" y1="{{ y(.) }}" x2="0" y2="0" stroke="gray" />
+              {{/ end points }}
+            {{/ end if }}
+            {{^ num == 2 }}
+              <path d="{{ path.print() }}" fill="none" stroke="gray" />
+            {{/ end else }}
           {{/ rings }}
           {{# polygons }}
             <path d="{{ polygon.path.print() }}" fill="{{ lighten(col) }}" stroke="{{ color_string(col) }}" />
