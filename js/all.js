@@ -2060,7 +2060,7 @@ var requirejs, require, define;
       'text': '../components/requirejs-text/text',
       'json': '../components/requirejs-plugins/src/json',
       'ractive': '../components/ractive/build/Ractive',
-      'paths': '../components/paths-js/dist/paths',
+      'paths': '../components/paths-js/dist/amd',
       'templates': '../templates',
       'data': '../data'
     }
