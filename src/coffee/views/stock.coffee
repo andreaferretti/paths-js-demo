@@ -29,13 +29,21 @@ define [
 
   palette = ["#3E90F0", "#7881C2", "#707B82"]
   stocks = ['MSFT', 'AAPL', 'AMZN']
+  stock_array = [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
+  
+  cycle = (arr, i) ->
+    l = arr.length
+    a = []
+    for j in [0..l - 1]
+      a[(j + i) % l] = arr[j]
+    a
 
   stock = new Ractive
     el: '#stock'
     template: template
     data:
       Stock: Stock
-      data: [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
+      data: stock_array
       xaccessor: ({ date }) -> parse_date(date)
       yaccessor: ({ value }) -> value
       width: 500
@@ -44,11 +52,8 @@ define [
       colors: util.palette_to_function(palette)
       closed: false
       
-  stock.observe 'stock', (i, prev) ->
+  stock.observe 'stock', (i) ->
     if i == 'all'
-      @set 'data', [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
+      @set 'data', stock_array
     else
-      if prev == 'all'
-        @set 'data', [stock_data[i]]
-      else
-        @animate 'data', [stock_data[i]]
+      @animate 'data', cycle(stock_array, parseInt(i))

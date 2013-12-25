@@ -8,16 +8,20 @@
 
     <select value='{{ stock }}'>
       <option value='all'>All</option>
-      {{# stocks }}
-        <option value='{{ . }}'>{{ . }}</option>
+      {{# stocks:num }}
+        <option value='{{ num }}'>{{ . }}</option>
       {{/ stocks }}
     </select>
 
 	  <svg width=500 height=380>
 	    <g>
-	      {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, colors: colors, closed: false }).polygons }}
-	        <path d="{{ line.path.print() }}" stroke="{{ color }}" fill="none" />
-	        <path d="{{ area.path.print() }}" stroke="none" fill="{{ color }}" />
+	      {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, colors: colors, closed: false }) }}
+	        {{# polygons:num }}
+	          {{# stock == 'all' || num == 0 }}
+	            <path d="{{ line.path.print() }}" stroke="{{ color }}" fill="none" />
+	            <path d="{{ area.path.print() }}" stroke="none" fill="{{ color }}" />
+	          {{/ end if }}
+	        {{/ polygons }}
 	      {{/ end of stock }}
 	    </g>
 	  </svg>
