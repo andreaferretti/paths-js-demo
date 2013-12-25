@@ -28,6 +28,7 @@ define [
     d.getTime()
 
   palette = ["#707B82", "#3E90F0", "#7881C2"]
+  stocks = ['MSFT', 'AAPL', 'AMZN']
 
   stock = new Ractive
     el: '#stock'
@@ -39,5 +40,15 @@ define [
       yaccessor: ({ value }) -> value
       width: 500
       height: 350
+      stocks: stocks
       colors: util.palette_to_function(palette)
       closed: false
+      
+  stock.observe 'stock', (i, prev) ->
+    if i == 'all'
+      @set 'data', [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
+    else
+      if prev == 'all'
+        @set 'data', [stock_data[i]]
+      else
+        @animate 'data', [stock_data[i]]
