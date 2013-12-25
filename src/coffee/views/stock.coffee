@@ -28,6 +28,7 @@ define [
     d.getTime()
 
   palette = ["#3E90F0", "#7881C2", "#707B82"]
+  colors = util.palette_to_function(palette)
   stocks = ['MSFT', 'AAPL', 'AMZN']
   stock_array = [stock_data.MSFT, stock_data.AAPL, stock_data.AMZN]
   
@@ -49,11 +50,14 @@ define [
       width: 500
       height: 350
       stocks: stocks
-      colors: util.palette_to_function(palette)
+      colors: colors
       closed: false
       
   stock.observe 'stock', (i) ->
     if i == 'all'
-      @set 'data', stock_array
+      @set
+        data: stock_array
+        colors: colors
     else
       @animate 'data', cycle(stock_array, parseInt(i))
+      @set 'colors', util.palette_to_function(cycle(palette, parseInt(i)))
