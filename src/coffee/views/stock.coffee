@@ -27,7 +27,7 @@ define [
     d.setYear(parseInt(year, 10) - 1900)
     d.getTime()
 
-  palette = ["#707B82", "#3E90F0", "#7881C2"]
+  palette = ["#3E90F0", "#7881C2", "#707B82"]
   stocks = ['MSFT', 'AAPL', 'AMZN']
 
   stock = new Ractive
