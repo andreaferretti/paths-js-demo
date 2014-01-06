@@ -25,7 +25,7 @@ define [
   palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
   colors = util.palette_to_function(palette)
   labels = ['hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed']
-  
+
   radar = new Ractive
     el: '#radar'
     template: template
@@ -46,7 +46,7 @@ define [
       y: ([x, y]) -> y
       lighten: (color) ->
         Colors.string(Colors.lighten color)
-      
+
   radar.observe 'name', (i) ->
     @animate
       data: [pokemon[i]]

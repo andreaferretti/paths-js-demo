@@ -38,9 +38,9 @@
               <path d="{{ path.print() }}" fill="none" stroke="gray" />
             {{/ end else }}
           {{/ rings }}
-          {{# polygons }}
+          {{# curves }}
             <path d="{{ polygon.path.print() }}" fill="{{ lighten(col) }}" stroke="{{ color_string(col) }}" />
-          {{/ polygons }}
+          {{/ curves }}
         {{/ end of radar}}
       </g>
     </svg>
