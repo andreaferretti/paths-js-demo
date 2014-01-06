@@ -2,7 +2,7 @@ define [
   'ractive'
   'paths/smooth-line'
   'palette/util'
-  'json!data/stock.json'
+  'json!data/line.json'
   'text!templates/line.html'
 ], (Ractive, SmoothLine, util, stock_data, template)->
   parse_date = (str) ->
