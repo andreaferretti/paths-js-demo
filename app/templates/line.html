@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Line Chart</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is a line chart example. Try switching data.</p>
+
+    <select value='{{ stock }}'>
+      <option value='all'>All</option>
+      {{# stocks:num }}
+        <option value='{{ num }}'>{{ . }}</option>
+      {{/ stocks }}
+    </select>
+
+    <svg width=500 height=380>
+      <g>
+        {{# Line({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, colors: colors, closed: false }) }}
+          {{# lines:num }}
+            {{# stock == 'all' || num == 0 }}
+              <path d="{{ line.path.print() }}" stroke="{{ color }}" fill="none" />
+            {{/ end if }}
+          {{/ lines }}
+        {{/ end of stock }}
+      </g>
+    </svg>
+  </div>
+</div>

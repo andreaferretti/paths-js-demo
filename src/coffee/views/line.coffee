@@ -1,10 +1,10 @@
 define [
   'ractive'
-  'paths/stock'
+  'paths/smooth-line'
   'palette/util'
   'json!data/stock.json'
-  'text!templates/stock.html'
-], (Ractive, Stock, util, stock_data, template)->
+  'text!templates/line.html'
+], (Ractive, SmoothLine, util, stock_data, template)->
   parse_date = (str) ->
     [month, year] = str.split ' '
     months =
@@ -39,11 +39,11 @@ define [
       a[(j + i) % l] = arr[j]
     a
 
-  stock = new Ractive
-    el: '#stock'
+  line = new Ractive
+    el: '#line'
     template: template
     data:
-      Stock: Stock
+      Line: SmoothLine
       data: stock_array
       xaccessor: ({ date }) -> parse_date(date)
       yaccessor: ({ value }) -> value
@@ -53,7 +53,7 @@ define [
       colors: colors
       closed: false
 
-  stock.observe 'stock', (i) ->
+  line.observe 'stock', (i) ->
     if i == 'all'
       @set
         data: stock_array
