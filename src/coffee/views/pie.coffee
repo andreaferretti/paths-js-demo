@@ -19,6 +19,7 @@ define [
     el: '#pie'
     template: template
     data:
+      Pie: Pie
       center: [0, 0]
       r: 60
       R: 140
@@ -26,7 +27,6 @@ define [
       accessor: (x) -> x.population
       colors: util.palette_to_function(palette)
       expanded: [0, 0, 0, 0, 0]
-      Pie: Pie
       move: ([x, y], expanded) ->
         factor = expanded or 0
         "#{ factor * x / 3 }, #{ factor * y / 3 }"
