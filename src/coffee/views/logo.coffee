@@ -19,6 +19,7 @@ define [
   Ractive.easing.elastic = (pos) ->
     -1 * Math.pow(4,-8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1
 
+
   logo = new Ractive
     el: '#logo'
     template: template
@@ -27,6 +28,10 @@ define [
       points: points
       name: ([x, y]) -> {x: x, y: y}
 
+  go_back = ->
+    logo.animate 'points', points, easing: 'elastic'
+
   logo.on 'shuffle', (event) ->
-    console.log event
-    @animate 'points', move(points), easing: 'elastic'
+    @animate 'points', move(points),
+      easing: 'easeIn'
+      complete: go_back
