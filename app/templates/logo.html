@@ -1,0 +1,12 @@
+<h1 class="logo">Paths.js</h1>
+
+<svg width="800" height="300">
+  {{# Bezier({points: points}) }}
+    <path on-click="shuffle" d="{{ path.print() }}" stroke="red" fill="none" />
+  {{/ end of bezier }}
+  {{# points }}
+    {{# name(.) }}
+      <circle on-click="shuffle" r="5" cx="{{ x }}" cy="{{ y }}" stroke="red" stroke-width="2" fill="white" />
+    {{/ end point }}
+  {{/ points }}
+</svg>

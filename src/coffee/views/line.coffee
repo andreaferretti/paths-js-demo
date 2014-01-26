@@ -39,16 +39,6 @@ define [
       a[(j + i) % l] = arr[j]
     a
 
-  console.log SmoothLine
-    data: stock_array
-    xaccessor: ({ date }) -> parse_date(date)
-    yaccessor: ({ value }) -> value
-    width: 500
-    height: 350
-    stocks: stocks
-    colors: colors
-    closed: false
-
   line = new Ractive
     el: '#line'
     template: template
