@@ -93,7 +93,7 @@ module.exports = (grunt)->
         cssDir: '<%= config.tmp %>/css'
         imagesDir: '<%= config.app %>/images'
         javascriptsDir: '<%= config.app %>/js'
-        fontsDir: './css/fonts'
+        fontsDir: './fonts'
         importPath: ['<%= config.app %>/components']
         relativeAssets: true
 
