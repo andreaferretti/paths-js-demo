@@ -8,9 +8,9 @@
 
     <svg width=500 height=380>
       <g>
-        {{# Bar({data: data, accessor: accessor, width: width, height: height, gutter: gutter, colors: colors }) }}
+        {{# Bar({data: data, accessor: accessor, width: width, height: height, gutter: gutter }) }}
           {{# curves:num }}
-            <path on-mouseenter="detail" on-mouseleave="restore" d="{{ line.path.print() }}" stroke="none" fill="{{ color }}" />
+            <path on-mouseenter="detail" on-mouseleave="restore" d="{{ line.path.print() }}" stroke="none" fill="{{ colors(index) }}" />
           {{/ curves }}
         {{/ end of bar }}
       </g>

@@ -8,12 +8,12 @@
 
     <svg width=375 height=400>
       <g transform="translate(200, 200)">
-        {{# Pie({center: center, r: r, R: R, data: data, accessor: accessor, colors: colors}) }}
+        {{# Pie({center: center, r: r, R: R, data: data, accessor: accessor}) }}
           {{# curves:num }}
             <g transform="translate({{ move(sector.centroid, expanded[num]) }})">
               <linearGradient id = "grad-{{ num }}">
-                <stop stop-color = "{{ color_string(color) }}" offset = "0%"/>
-                <stop stop-color = "{{ lighten(color) }}" offset = "100%"/>
+                <stop stop-color = "{{ color_string(colors(index)) }}" offset = "0%"/>
+                <stop stop-color = "{{ lighten(colors(index)) }}" offset = "100%"/>
               </linearGradient>
               <path on-click="expand" d="{{ sector.path.print() }}" fill="url(#grad-{{ num }})" />
               <text text-anchor="middle" transform="translate({{ point(sector.centroid) }})">{{ item.name }}</text>
