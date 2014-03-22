@@ -5,5 +5,6 @@ define [
   'views/radar'
   'views/line'
   'views/bar'
+  'views/tree'
 ], () ->
   console.log 'app loaded'

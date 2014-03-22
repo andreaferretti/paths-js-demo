@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Tree Chart</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is part of the duck family tree. Leafs are expandable.</p>
+
+    <svg width=500 height=380>
+      <g transform="translate(70,20)">
+        {{# Tree({data: data, children: children, width: width, height: height}) }}
+          {{# curves }}
+            <path d="{{ connector.path.print() }}" />
+          {{/ curves }}
+          {{# nodes }}
+            <g transform="translate({{ point[0] }},{{ point[1] }})">
+              <circle r="5" cx="0" cy="0" on-click="toggle" />
+              {{# leaf(item) }}
+                <text transform="translate(10,0)" text-anchor="start">{{ item.name }}</text>
+              {{/ end if }}
+              {{^ leaf(item) }}
+                <text transform="translate(-10,0)" text-anchor="end">{{ item.name }}</text>
+              {{/ end if }}
+            </g>
+          {{/ nodes }}
+        {{/ end of connector }}
+      </g>
+    </svg>
+  </div>
+</div>
