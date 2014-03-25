@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Graph Tree</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is an example of force-directed graph.</p>
+
+    <svg width=800 height=380>
+      <g transform="translate(20,20)">
+        {{# graph }}
+          {{# curves }}
+            <path d="{{ link.path.print() }}" stroke="grey" fill="none" />
+          {{/ curves }}
+          {{# nodes }}
+            <circle r="{{ 2 + item / 2 }}" cx="{{ point[0] }}" cy="{{ point[1] }}" stroke="grey" fill="white" />
+          {{/ nodes }}
+        {{/ graph }}
+      </g>
+    </svg>
+  </div>
+</div>
