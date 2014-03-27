@@ -1,57 +1,52 @@
 define [
   'ractive'
   'paths/graph'
+  'palette/colors'
+  'palette/util'
   'text!templates/graph.html'
-], (Ractive, Graph, template)->
+], (Ractive, Graph, Colors, util, template) ->
 
-  nodes = [1..12]
-  links = [
-    { a: 1, b: 3, w: 5 }
-    { a: 3, b: 4, w: 3 }
-    { a: 5, b: 8, w: 6 }
-    { a: 2, b: 1, w: 4 }
-    { a: 7, b: 6, w: 4.3 }
-    { a: 2, b: 10, w: 5.1 }
-    { a: 10, b: 9, w: 8 }
-    { a: 11, b: 4, w: 1.2 }
-    { a: 8, b: 4, w: 6.9 }
-    { a: 9, b: 12, w: 6.6 }
-    { a: 4, b: 5, w: 5 }
-    { a: 3, b: 7, w: 4.8 }
-    { a: 1, b: 8, w: 5.6 }
-    { a: 12, b: 6, w: 7.2 }
-    { a: 6, b: 2, w: 3 }
-    { a: 3, b: 11, w: 8.8 }
-  ]
+  random_graph = (n, density) ->
+    nodes = [0..n]
+    links = []
+    for i in nodes
+      for j in [i+1..n]
+        if Math.random() < density
+          links.push
+            start: i
+            end: j
+            weight: 3 + 5 * Math.random()
 
-  get_link = ({a, b, w}) ->
-    start: a
-    end: b
-    weight: w
+    nodes: nodes
+    links: links
+
+  palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
 
   graph = Graph
-    data:
-      nodes: nodes
-      links: links
-    linkaccessor: get_link
-    width: 600
-    height: 300
-    attraction: 0.003
-    repulsion: 3000
+    data: random_graph(15, 0.25)
+    width: 450
+    height: 400
+    attraction: 0.007
+    repulsion: 20000
 
   ractive = new Ractive
     el: '#graph'
     template: template
     data:
       graph: graph
+      colors: util.palette_to_function(palette)
+      color_string: Colors.string
 
   moving = true
+  stop_time = 5
+  frames = 0
 
   step = ->
+    frames +=1
     graph.tick()
     ractive.update()
     if moving then requestAnimationFrame(step)
 
   step()
 
-  setTimeout (-> moving = false), 4000
+  setTimeout (-> moving = false; console.log("fps", frames / stop_time)), 1000 * stop_time

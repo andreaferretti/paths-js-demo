@@ -4,16 +4,16 @@
   </div>
 
   <div class="panel-body">
-    <p class="alert alert-info">Here is an example of force-directed graph.</p>
+    <p class="alert alert-info">Here is a preliminary example of force-directed graph.</p>
 
-    <svg width=800 height=380>
+    <svg width=500 height=430>
       <g transform="translate(20,20)">
         {{# graph }}
           {{# curves }}
             <path d="{{ link.path.print() }}" stroke="grey" fill="none" />
           {{/ curves }}
-          {{# nodes }}
-            <circle r="{{ 2 + item / 2 }}" cx="{{ point[0] }}" cy="{{ point[1] }}" stroke="grey" fill="white" />
+          {{# nodes:num }}
+            <circle r="5" cx="{{ point[0] }}" cy="{{ point[1] }}" stroke="grey" fill="{{ color_string(colors(num)) }}" />
           {{/ nodes }}
         {{/ graph }}
       </g>
