@@ -23,11 +23,11 @@ define [
   palette = Colors.mix {r: 130, g: 140, b: 210}, {r: 180, g: 205, b: 150}
 
   graph = Graph
-    data: random_graph(15, 0.25)
+    data: random_graph(20, 0.25)
     width: 450
     height: 400
-    attraction: 0.007
-    repulsion: 20000
+    attraction: 7
+    repulsion: 20
 
   ractive = new Ractive
     el: '#graph'
@@ -43,8 +43,7 @@ define [
 
   step = ->
     frames +=1
-    graph.tick()
-    ractive.update()
+    ractive.set(graph: graph.tick())
     if moving then requestAnimationFrame(step)
 
   step()
