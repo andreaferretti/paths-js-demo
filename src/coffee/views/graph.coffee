@@ -9,7 +9,7 @@ define [
   random_graph = (n, density) ->
     nodes = [0..n]
     links = []
-    for i in nodes
+    for i in [0..n-1]
       for j in [i+1..n]
         if Math.random() < density
           links.push
@@ -46,6 +46,6 @@ define [
     ractive.set(graph: graph.tick())
     if moving then requestAnimationFrame(step)
 
-  step()
+  requestAnimationFrame(step)
 
   setTimeout (-> moving = false; console.log("fps", frames / stop_time)), 1000 * stop_time
