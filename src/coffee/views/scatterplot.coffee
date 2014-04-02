@@ -21,6 +21,7 @@ define [
       height: 350
       colors: colors
       translate: ([x, y]) -> "translate(#{x},#{y})"
+      firsthalf: (count) -> count <= tp.length / 2
 
   scatterplot.on 'enter', (event) ->
     { num, count } = event.index

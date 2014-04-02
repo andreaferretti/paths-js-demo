@@ -18,10 +18,10 @@
 		        			on-mouseenter="enter" on-mouseleave="leave" />
 		        		{{# item[count] }}
 		        			{{# selected }}
-		        				{{# count < 15 }}
+		        				{{# firsthalf(count) }}
 					        		<text transform="translate(15, 5)" text-anchor="start">{{ title }}</text>
 		        				{{/ end if }}
-		        				{{^ count < 15 }}
+		        				{{^ firsthalf(count) }}
 					        		<text transform="translate(-15, 5)" text-anchor="end">{{ title }}</text>
 		        				{{/ end else }}
 				        	{{/ selected }}
