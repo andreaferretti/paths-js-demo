@@ -8,8 +8,8 @@
 
     <p>Rating data for the Twin Peaks episodes.</p>
 
-	  <svg width=500 height=380>
-	    <g transform="translate(20, 20)">
+	  <svg width=500 height=400>
+	    <g transform="translate(20, 30)">
 	      {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, closed: false }) }}
 	        {{# curves:num }}
 	        	{{# line.path.points():count }}
@@ -29,6 +29,14 @@
 				       </g>
 	          {{/ end points }}
 	        {{/ curves }}
+	        <line x1="{{ xscale(0) }}" y1="{{ yscale(9.6) }}" x2="{{ xscale(0) }}" y2="{{ yscale(7.9) }}" />
+	        <line x1="{{ xscale(-0.5) }}" y1="{{ yscale(7.95) }}" x2="{{ xscale(32.1) }}" y2="{{ yscale(7.95) }}" />
+	        {{# [8, 8.5, 9, 9.5] }}
+	        	<g transform="translate({{ xscale(0) }},{{ yscale(.) }})">
+		        	<circle r="2" cx="0" cy="0" stroke="grey" fill="grey" />
+		        	<text transform="translate(5, 5)" text-anchor="start">{{ . }}</text>
+		        </g>
+	        {{/ end ratings }}
 	      {{/ end of stock }}
 	    </g>
 	  </svg>
