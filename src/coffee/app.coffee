@@ -7,5 +7,6 @@ define [
   'views/bar'
   'views/tree'
   'views/graph'
+  'views/scatterplot'
 ], () ->
   console.log 'app loaded'

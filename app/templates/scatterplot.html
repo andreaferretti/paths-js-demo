@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Scatterplot</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">The stock chart can also be used to plot scattered data.</p>
+
+    <p>Rating data for the Twin Peaks episodes.</p>
+
+	  <svg width=500 height=380>
+	    <g transform="translate(20, 20)">
+	      {{# Stock({data: data, xaccessor: xaccessor, yaccessor: yaccessor, width: width, height: height, closed: false }) }}
+	        {{# curves:num }}
+	        	{{# line.path.points():count }}
+	        		<g transform="{{ translate(.) }}">
+		        		<circle r="5" cx="0" cy="0" stroke="{{ colors(num) }}" fill="white"
+		        			on-mouseenter="enter" on-mouseleave="leave" />
+		        		{{# item[count] }}
+		        			{{# selected }}
+				        		<text transform="translate(15, 5)">{{ title }}</text>
+				        	{{/ selected }}
+				        {{/ end of item }}
+				       </g>
+	          {{/ end points }}
+	        {{/ curves }}
+	      {{/ end of stock }}
+	    </g>
+	  </svg>
+  </div>
+</div>
