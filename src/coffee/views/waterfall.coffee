@@ -42,3 +42,4 @@ define [
       height: 350
       gutter: 10
       translate: (x) -> "translate(#{ x.centroid[0] },370)"
+      color: (x) -> if x.absolute then "#acd1e9" else "#fa6078"

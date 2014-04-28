@@ -10,7 +10,7 @@
       <g transform="translate(20, 30)">
         {{# Waterfall({data: data, width: width, height: height, gutter: gutter }) }}
           {{# curves:num }}
-            <path d="{{ line.path.print() }}" stroke="none" fill="#ACD1E9" />
+            <path d="{{ line.path.print() }}" stroke="none" fill="{{ color(item) }}" />
             <text transform="{{ translate(line) }}" text-anchor="middle">{{ item.name }}</text>
           {{/ curves }}
         {{/ end of stock }}
