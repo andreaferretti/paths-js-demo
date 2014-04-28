@@ -6,7 +6,7 @@
 		"requirejs-text": "2.0.10",
 		"requirejs-plugins": "1.0.2",
 		"ractive": "0.3.7",
-		"paths-js": "0.2.4"
+		"paths-js": "0.2.5"
 	},
 	"devDependencies": {}
 }

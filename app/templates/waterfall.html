@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Waterfall</h2>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">A breakdown of incomes and costs</p>
+
+    <svg width="500" height="440">
+      <g transform="translate(20, 30)">
+        {{# Waterfall({data: data, width: width, height: height, gutter: gutter }) }}
+          {{# curves:num }}
+            <path d="{{ line.path.print() }}" stroke="none" fill="#ACD1E9" />
+            <text transform="{{ translate(line) }}" text-anchor="middle">{{ item.name }}</text>
+          {{/ curves }}
+        {{/ end of stock }}
+      </g>
+    </svg>
+  </div>
+</div>
