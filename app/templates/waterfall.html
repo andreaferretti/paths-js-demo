@@ -4,11 +4,17 @@
   </div>
 
   <div class="panel-body">
-    <p class="alert alert-info">A breakdown of incomes and costs</p>
+    <p class="alert alert-info">A breakdown of incomes and costs for each month</p>
+
+    <select value='{{ month }}'>
+      {{# months:num }}
+        <option value='{{ num }}'>{{ . }}</option>
+      {{/ months }}
+    </select>
 
     <svg width="500" height="440">
       <g transform="translate(20, 30)">
-        {{# Waterfall({data: data, width: width, height: height, gutter: gutter }) }}
+        {{# Waterfall({data: profit[0], width: width, height: height, gutter: gutter }) }}
           {{# curves:num }}
             <path d="{{ line.path.print() }}" stroke="none" fill="{{ color(item) }}" />
             <text transform="{{ translate(line) }}" text-anchor="middle">{{ item.name }}</text>
