@@ -6,14 +6,14 @@
   <div class="panel-body">
     <p class="alert alert-info">Here is a preliminary example of force-directed graph.</p>
 
-    <svg width=500 height=430>
+    <svg width="500" height="430" on-mousemove="move" on-mouseup="unconstrain">
       <g transform="translate(20,20)">
         {{# graph }}
           {{# curves }}
             <path d="{{ link.path.print() }}" stroke="grey" fill="none" />
           {{/ curves }}
           {{# nodes:num }}
-            <circle r="5" cx="{{ point[0] }}" cy="{{ point[1] }}" stroke="grey" fill="{{ color_string(colors(num)) }}" />
+            <circle r="5" cx="{{ point[0] }}" cy="{{ point[1] }}" stroke="grey" fill="{{ color_string(colors(num)) }}" on-mousedown="constrain" />
           {{/ nodes }}
         {{/ graph }}
       </g>

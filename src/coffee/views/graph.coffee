@@ -39,13 +39,45 @@ define [
 
   moving = true
   stop_time = 5
-  frames = 0
+  svgX = null
+  svgY = null
+  following = null
+  timer = null
 
   step = ->
-    frames +=1
     ractive.set(graph: graph.tick())
     if moving then requestAnimationFrame(step)
 
-  requestAnimationFrame(step)
+  start = ->
+    if timer
+      clearTimeout(timer)
+      timer = null
+    requestAnimationFrame(step)
 
-  setTimeout (-> moving = false; console.log("fps", frames / stop_time)), 1000 * stop_time
+  stop = ->
+    timer = setTimeout (-> moving = false), 1000 * stop_time
+
+  start()
+  stop()
+
+
+  ractive.on 'constrain', (event) ->
+    moving = true
+    target = event.original.target
+    svgX = event.original.clientX - target.cx.baseVal.value
+    svgY = event.original.clientY - target.cy.baseVal.value
+    following = event.index.num
+    start()
+
+  ractive.on 'move', (event) ->
+    if not following then return null
+    if event.original.button != 0
+      stop()
+      return null
+    coordinates = [event.original.clientX - svgX, event.original.clientY - svgY]
+    graph.constrain(following, coordinates)
+
+  ractive.on 'unconstrain', (event) ->
+    graph.unconstrain(following)
+    following = null
+    stop()
