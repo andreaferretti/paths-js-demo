@@ -1,10 +1,11 @@
 define [
   'ractive'
+  'show_source'
   'palette/colors'
   'palette/util'
   'paths/pie'
   'text!templates/pie.html'
-], (Ractive, Colors, util, Pie, template)->
+], (Ractive, show_source, Colors, util, Pie, template)->
   countries = [
     { name: 'Italy', population: 59859996 }
     { name: 'Mexico', population: 118395054 }
@@ -40,3 +41,5 @@ define [
     target = [0, 0, 0, 0, 0]
     target[index] = 1
     @animate 'expanded', target, easing: 'easeOut'
+
+  show_source('pie', pie)

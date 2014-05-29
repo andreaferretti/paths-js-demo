@@ -1,8 +1,9 @@
 define [
   'ractive'
+  'show_source'
   'paths/waterfall'
   'text!templates/waterfall.html'
-], (Ractive, Waterfall, template) ->
+], (Ractive, show_source, Waterfall, template) ->
 
   months = ['January', 'February', 'March']
 
@@ -113,3 +114,5 @@ define [
 
   waterfall.observe 'month', (i) ->
     @animate 'profit', cycle(profit, parseInt(i))
+
+  show_source('waterfall', waterfall)

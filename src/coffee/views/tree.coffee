@@ -1,9 +1,10 @@
 define [
   'ractive'
+  'show_source'
   'paths/tree'
   'json!data/ducks.json'
   'text!templates/tree.html'
-], (Ractive, Tree, ducks, template)->
+], (Ractive, show_source, Tree, ducks, template)->
 
   children = (x) ->
     if x.collapsed then [] else x.children
@@ -24,3 +25,5 @@ define [
     node = event.context.item
     node.collapsed = not node.collapsed
     @update()
+
+  show_source('tree', tree)

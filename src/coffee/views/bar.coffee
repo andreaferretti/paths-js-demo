@@ -1,9 +1,10 @@
 define [
   'ractive'
+  'show_source'
   'paths/bar'
   'palette/util'
   'text!templates/bar.html'
-], (Ractive, Bar, util, template)->
+], (Ractive, show_source, Bar, util, template)->
   palette = ["#FEE871", "#E5FAAF", "#B7E5F5"]
   colors = util.palette_to_function(palette)
 
@@ -35,3 +36,5 @@ define [
 
   bar.on 'restore', ->
     @animate 'data', data
+
+  show_source('bar', bar)

@@ -1,10 +1,11 @@
 define [
   'ractive'
+  'show_source'
   'paths/stock'
   'palette/util'
   'json!data/twin-peaks.json'
   'text!templates/scatterplot.html'
-], (Ractive, Stock, util, tp, template)->
+], (Ractive, show_source, Stock, util, tp, template)->
 
   palette = ["#3E90F0", "#7881C2", "#707B82"]
   colors = util.palette_to_function(palette)
@@ -32,3 +33,5 @@ define [
     { num, count } = event.index
     tp[count].selected = false
     @update()
+
+  show_source('scatterplot', scatterplot)

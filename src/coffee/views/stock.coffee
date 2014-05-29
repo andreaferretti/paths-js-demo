@@ -1,10 +1,11 @@
 define [
   'ractive'
+  'show_source'
   'paths/stock'
   'palette/util'
   'json!data/stock.json'
   'text!templates/stock.html'
-], (Ractive, Stock, util, stock_data, template)->
+], (Ractive, show_source, Stock, util, stock_data, template)->
   parse_date = (str) ->
     [month, year] = str.split ' '
     months =
@@ -61,3 +62,5 @@ define [
     else
       @animate 'data', cycle(stock_array, parseInt(i))
       @set 'colors', util.palette_to_function(cycle(palette, parseInt(i)))
+
+  show_source('stock', stock)

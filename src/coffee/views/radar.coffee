@@ -1,10 +1,11 @@
 define [
   'ractive'
+  'show_source'
   'palette/colors'
   'palette/util'
   'paths/radar'
   'text!templates/radar.html'
-], (Ractive, Colors, util, Radar, template)->
+], (Ractive, show_source, Colors, util, Radar, template)->
   key_accessor = (keys) ->
     a = {}
     for key in keys
@@ -51,3 +52,5 @@ define [
     @animate
       data: [pokemon[i]]
       col: colors(parseInt(i))
+
+  show_source('radar', radar)

@@ -1,5 +1,6 @@
 define [
   'views/logo'
+  'views/overlay'
   'views/pie'
   'views/stock'
   'views/radar'

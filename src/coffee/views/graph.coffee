@@ -1,10 +1,11 @@
 define [
   'ractive'
+  'show_source'
   'paths/graph'
   'palette/colors'
   'palette/util'
   'text!templates/graph.html'
-], (Ractive, Graph, Colors, util, template) ->
+], (Ractive, show_source, Graph, Colors, util, template) ->
 
   random_graph = (n, density) ->
     nodes = [0..n]
@@ -81,3 +82,5 @@ define [
     graph.unconstrain(following)
     following = null
     stop()
+
+  show_source('graph', ractive)
