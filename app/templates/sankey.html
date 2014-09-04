@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Sankey Diagram</h2>
+    <span class="links">
+      <a on-click="coffee">Coffescript</a>
+      <a on-click="html">HTML</a>
+    </span>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is a Sankey diagram example.</p>
+    <svg width=500 height=380>
+      <g>
+        {{# curvedRectangles }}
+          <path d="{{ path.print() }}" stroke="yellow" style="opacity: 0.5"/>
+        {{/ curvedRectangles }}
+      </g>
+      <g>
+        {{# rectangles }}
+          <path d="{{ path.print() }}" stroke="none" style="opacity: 0.9" fill="red"/>
+        {{/ rectangles }}
+      </g>
+    </svg>
+  </div>
+</div>
