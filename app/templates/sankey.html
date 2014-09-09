@@ -9,17 +9,35 @@
 
   <div class="panel-body">
     <p class="alert alert-info">Here is a Sankey diagram example.</p>
-    <svg width=500 height=380>
-      <g>
-        {{# curvedRectangles }}
-          <path d="{{ path.print() }}" stroke="yellow" style="opacity: 0.5"/>
-        {{/ curvedRectangles }}
-      </g>
-      <g>
-        {{# rectangles }}
-          <path d="{{ path.print() }}" stroke="none" style="opacity: 0.9" fill="red"/>
-        {{/ rectangles }}
-      </g>
+
+    <select value='{{ month }}'>
+      {{# months:num }}
+        <option value='{{ num }}'>{{ . }}</option>
+      {{/ months }}
+    </select>
+
+    <svg width="{{width}}" height="{{height}}">
+      {{# Sankey({data: data, width: width, height: height, gutter: gutter, rect_width: rect_width, node_accessor: node_accessor}) }}
+        <g>
+          {{# curvedRectangles:num }}
+            <path on-mouseenter="highlight" on-mouseleave="exit" d="{{ curve.path.print() }}" fill="#acd1e9" style="opacity: {{ opacity(index, index_) }}"/>
+            {{# num==index_ }}
+              <text transform="{{ translate_rect(curve) }}" text-anchor="middle">{{ item.weight }} </text>
+            {{/ end if }}
+          {{/ curvedRectangles }}
+        </g>
+        <g>
+          {{# rectangles }}
+            <path d="{{ curve.path.print() }}" fill="{{ color(group) }}" style="opacity: {{ opacity_rect(item, start_, end_) }}" />
+            {{# firsthalf(group) }}
+              <text transform="translate(7,0) {{ translate_rect(curve) }}" style="opacity: {{ opacity_rect(item, start_, end_) }}" text-anchor="start">{{ item.id }} </text>
+            {{/ end if }}
+            {{^ firsthalf(group) }}
+              <text transform="translate(-7,0) {{ translate_rect(curve) }}" style="opacity: {{ opacity_rect(item, start_, end_) }}" text-anchor="end">{{ item.id }} </text>
+            {{/ end else }}
+          {{/ rectangles }}
+        </g>
+      {{/ end of Sankey }}
     </svg>
   </div>
 </div>
