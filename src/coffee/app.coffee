@@ -9,6 +9,7 @@ define [
   'views/tree'
   'views/graph'
   'views/scatterplot'
+  'views/sankey'
   'views/waterfall'
 ], () ->
   console.log 'app loaded'
