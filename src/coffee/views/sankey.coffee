@@ -6,8 +6,7 @@ define [
   'json!data/sankey.json'
 ], (Ractive, show_source, Sankey, template, data)->
 
-  months = ['2010', '2011', '2012']
-
+  years = ['2010', '2011', '2012']
   palette = ["#707B82", "#7881C2", "#3E90F0"]
 
   sankey = new Ractive
@@ -15,12 +14,12 @@ define [
     template: template
     data:
       data: data[0]
-      months: months
+      years: years
       width: 500
       height: 400
       gutter: 15
       rect_width: 10
-      node_accessor: (x) -> x.id
+      nodeaccessor: (x) -> x.id
       Sankey: Sankey
       index_: null
       start_: null
@@ -55,7 +54,7 @@ define [
       'start_': null
       'end_': null
 
-  sankey.observe 'month', (i) ->
+  sankey.observe 'year', (i) ->
     @animate 'data', data[parseInt(i)]
 
   show_source('sankey', sankey)

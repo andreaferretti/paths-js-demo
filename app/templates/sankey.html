@@ -10,14 +10,14 @@
   <div class="panel-body">
     <p class="alert alert-info">Here is a Sankey diagram example.</p>
 
-    <select value='{{ month }}'>
-      {{# months:num }}
+    <select value='{{ year }}'>
+      {{# years:num }}
         <option value='{{ num }}'>{{ . }}</option>
-      {{/ months }}
+      {{/ years }}
     </select>
 
     <svg width="{{width}}" height="{{height}}">
-      {{# Sankey({data: data, width: width, height: height, gutter: gutter, rect_width: rect_width, node_accessor: node_accessor}) }}
+      {{# Sankey({data: data, width: width, height: height, gutter: gutter, rect_width: rect_width, nodeaccessor: nodeaccessor}) }}
         <g>
           {{# curvedRectangles:num }}
             <path on-mouseenter="highlight" on-mouseleave="exit" d="{{ curve.path.print() }}" fill="#acd1e9" style="opacity: {{ opacity(index, index_) }}"/>
