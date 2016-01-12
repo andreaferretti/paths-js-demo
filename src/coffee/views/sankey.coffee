@@ -18,7 +18,7 @@ define [
       width: 500
       height: 400
       gutter: 15
-      rect_width: 10
+      rectWidth: 10
       nodeaccessor: (x) -> x.id
       Sankey: Sankey
       index_: null
@@ -28,11 +28,11 @@ define [
         g < data[0].nodes.length / 2
       color: (g) ->
         palette[g]
-      translate_rect: (r) -> 
+      translate_rect: (r) ->
         [x, y] = r.centroid
         "translate(#{x},#{y})"
       opacity: (i, j) ->
-        if j == null 
+        if j == null
           0.7
         else
           if j == i then 1 else 0.3
@@ -49,7 +49,7 @@ define [
       'end_': event.context.item.end
 
   sankey.on "exit", (event) ->
-    @set 
+    @set
       'index_': null
       'start_': null
       'end_': null

@@ -17,7 +17,7 @@
     </select>
 
     <svg width="{{width}}" height="{{height}}">
-      {{# Sankey({data: data, width: width, height: height, gutter: gutter, rect_width: rect_width, nodeaccessor: nodeaccessor}) }}
+      {{# Sankey({data: data, width: width, height: height, gutter: gutter, rectWidth: rectWidth, nodeaccessor: nodeaccessor}) }}
         <g>
           {{# curvedRectangles:num }}
             <path on-mouseenter="highlight" on-mouseleave="exit" d="{{ curve.path.print() }}" fill="#acd1e9" style="opacity: {{ opacity(index, index_) }}"/>
