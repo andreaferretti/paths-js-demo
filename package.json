@@ -15,7 +15,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-contrib-requirejs": "0.4.4",
     "grunt-open": "0.2.3",
-    "grunt-usemin": "3.0.0",
+    "grunt-usemin": "0.1.13",
     "connect-livereload": "0.5.3"
   },
   "engines": {
