@@ -12,7 +12,7 @@
 
     <svg width=500 height=380>
       <g>
-        {{# Bar({data: data, accessor: accessor, width: width, height: height, gutter: gutter }) }}
+        {{# Stack({data: data, accessor: accessor, width: width, height: height, gutter: gutter }) }}
           {{# curves:num }}
             <path on-mouseenter="detail" on-mouseleave="restore" d="{{ line.path.print() }}" stroke="none" fill="{{ colors(group) }}" />
           {{/ curves }}

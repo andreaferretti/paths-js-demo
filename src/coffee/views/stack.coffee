@@ -18,11 +18,11 @@ define [
     data.map (d, i) ->
       if i == index then d else (0 for x in d)
 
-  bar = new Ractive
+  stack = new Ractive
     el: '#stack'
     template: template
     data:
-      Bar: Stack
+      Stack: Stack
       data: data
       accessor: (x) -> x
       width: 500
@@ -30,12 +30,11 @@ define [
       gutter: 10
       colors: colors
 
-  bar.on 'detail', (event) ->
-    console.log event
+  stack.on 'detail', (event) ->
     index = event.context.group
     @animate 'data', lower(data, index)
 
-  bar.on 'restore', ->
+  stack.on 'restore', ->
     @animate 'data', data
 
-  show_source('bar', bar)
+  show_source('stack', stack)
