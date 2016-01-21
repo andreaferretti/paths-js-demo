@@ -6,6 +6,7 @@ define [
   'views/radar'
   'views/line'
   'views/bar'
+  'views/stack'
   'views/tree'
   'views/graph'
   'views/scatterplot'

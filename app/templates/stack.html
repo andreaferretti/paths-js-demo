@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Bar Chart</h2>
+    <span class="links">
+      <a on-click="coffee">Coffescript</a>
+      <a on-click="html">HTML</a>
+    </span>
+  </div>
+
+  <div class="panel-body">
+    <p class="alert alert-info">Here is a stacked bar chart example. Try hovering on the bars.</p>
+
+    <svg width=500 height=380>
+      <g>
+        {{# Bar({data: data, accessor: accessor, width: width, height: height, gutter: gutter }) }}
+          {{# curves:num }}
+            <path on-mouseenter="detail" on-mouseleave="restore" d="{{ line.path.print() }}" stroke="none" fill="{{ colors(group) }}" />
+          {{/ curves }}
+        {{/ end of bar }}
+      </g>
+    </svg>
+  </div>
+</div>
